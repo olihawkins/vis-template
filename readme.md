@@ -2,48 +2,72 @@
 
 This is a simple template and workflow for developing interactive data visualisations with modern JavaScript using Node.js, Babel, webpack and D3. The aim is to be able to use the latest features of JavaScript, while generating code that works across a wide range of browsers. You will need to have [Node.js](https://nodejs.org/) installed.
 
-To use this template, copy and rename the directory then follow the setup instructions below. Once you have set up the workflow you can edit `src/index.js` and `dist/index.html` to develop your visualisation.
+To use this template, follow the setup instructions below. Once you have set up the workflow you can edit `src/index.js` and `dist/index.html` to develop your visualisation.
 
 ## Setup
 
-1\. Initialise the project folder with `npm` to create the `package.json`.
+1\. Clone this repository.
+
+```sh
+git clone https://github.com/olihawkins/vis-template
+```
+
+2\. Rename the folder to your project name.
+
+```sh
+mv vis-template your-project-name
+```
+
+3\. Change into the project directory.
+
+```sh
+cd your-project-name
+```
+
+4\. Remove the git files.
+
+```sh
+rm -rf .git .gitignore LICENSE
+```
+
+5\. Initialise the project folder with `npm` to create the `package.json`.
 
 ```sh
 npm init
 ```
 
-2\. Install the development dependencies.
+6\. Install the development dependencies.
 
 ```sh
 npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/plugin-transform-runtime @babel/runtime-corejs3 webpack webpack-cli http-server eslint
 ```
 
-3\. Install the package dependencies.
+7\. Install the package dependencies.
 
 ```sh
 npm install --save @babel/runtime whatwg-fetch d3
 ```
 
-4\. Open `package.json` and add the following entries to `scripts` (above the entry for `test`).
+8\. Open `package.json` and add the following entries to `scripts` (above the entry for `test`).
 
 ```json
 "webpack": "webpack",
 "start": "http-server -a localhost -p 8000 -c-1",
 ```
 
-5\. Start webpack to build the bundle.
+9\. Start webpack to build the bundle.
 
 ```sh
 npm run webpack
 ```
 
-6\. Start the http server on http://localhost:8000 and navigate to the `dist` directory to view the output.
+10\. Start the http server on http://localhost:8000 and navigate to the `dist` directory to view the output.
 
 ```sh
 npm start
 ```
 
-7\. Create `.eslintrc` for the project if you use linting in your text editor (optional).
+11\. Create `.eslintrc` for the project if you use linting in your text editor (optional).
 
 ```sh
 ./node_modules/.bin/eslint --init
