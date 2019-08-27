@@ -28,7 +28,7 @@ module.exports = {
     stats: {
         colors: true
     },
-    mode: "production",
+    mode: "development",
     devtool: "source-map",
     watch: true
 };
