@@ -96,6 +96,7 @@ To generate the final production bundle, this development configuration needs to
 
 - Remove the script tag that loads D3 from the web in `dist/index.html`
 - Uncomment the import statements that include D3 and whatwg-fetch in `src/index.js`
+- Change the `mode` in `webpack.config.js` from `development` to `production` to minify the output bundle
 
 In its initial state, `index.js` contains some example code, which checks that webpack, Babel and D3 are working correctly. Replace this with your visualisation code.
 
