@@ -27,7 +27,7 @@ cd your-project-name
 4\. Remove the git files.
 
 ```sh
-rm -rf .git .gitignore LICENSE
+rm -rf .git .gitignore LICENSE readme.md
 ```
 
 5\. Initialise the project folder with `npm` to create the `package.json`.
@@ -39,7 +39,7 @@ npm init
 6\. Install the development dependencies.
 
 ```sh
-npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/plugin-transform-runtime webpack webpack-cli http-server eslint whatwg-fetch d3
+npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/plugin-transform-runtime webpack webpack-cli webpack-dev-server eslint whatwg-fetch d3
 ```
 
 7\. Install the package dependencies.
@@ -51,20 +51,20 @@ npm install --save @babel/runtime @babel/runtime-corejs3
 8\. Open `package.json` and add the following entries to `scripts` (above the entry for `test`).
 
 ```json
-"webpack": "webpack",
-"start": "http-server -a localhost -p 8000 -c-1",
+"build": "webpack",
+"start": "webpack-dev-server --open",
 ```
 
-9\. Start webpack to build the bundle.
+9\. Start the webpack development server. This opens `dist/index.html` with a development build of the files in `src`. Changes to the source files trigger automatic reloading of the page.
 
 ```sh
-npm run webpack
+npm run start
 ```
 
-10\. Start the http server on http://localhost:8000 and navigate to the `dist` directory to view the output.
+10\. Use webpack on its own to build the bundle when you are ready to deploy (see below).
 
 ```sh
-npm start
+npm run build
 ```
 
 11\. Create `.eslintrc` for the project if you use linting in your text editor (optional).
@@ -97,6 +97,7 @@ To generate the final production bundle, this development configuration needs to
 - Remove the script tag that loads D3 from the web in `dist/index.html`
 - Uncomment the import statements that include D3 and whatwg-fetch in `src/index.js`
 - Change the `mode` in `webpack.config.js` from `development` to `production` to minify the output bundle
+- Use `npm run build` to create the bundle
 
 In its initial state, `index.js` contains some example code, which checks that webpack, Babel and D3 are working correctly. Replace this with your visualisation code.
 
