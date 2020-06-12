@@ -39,13 +39,13 @@ npm init
 6\. Install the development dependencies.
 
 ```sh
-npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/plugin-transform-runtime webpack webpack-cli webpack-dev-server eslint whatwg-fetch d3
+npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/plugin-transform-runtime webpack webpack-cli webpack-dev-server eslint
 ```
 
 7\. Install the package dependencies.
 
 ```sh
-npm install --save @babel/runtime @babel/runtime-corejs3
+npm install --save @babel/runtime @babel/runtime-corejs3 whatwg-fetch d3
 ```
 
 8\. Open `package.json` and add the following entries to `scripts` (above the entry for `test`).
