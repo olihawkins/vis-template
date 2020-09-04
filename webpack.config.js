@@ -13,7 +13,7 @@ module.exports = {
                 test: /\.js$/,
                 loader: "babel-loader",
                 exclude: {
-                    test: /node_modules\/(?!(whatwg-fetch)\/).*/
+                    test: /node_modules\/(?!(whatwg-fetch|d3|d3-.*)\/).*/
                 },
                 options: {
                     presets: ["@babel/preset-env"],

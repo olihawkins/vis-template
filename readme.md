@@ -2,9 +2,17 @@
 
 This is a simple template and workflow for developing interactive data visualisations with modern JavaScript using Node.js, Babel, webpack and D3. The aim is to be able to use the latest features of JavaScript, while generating code that works across a wide range of browsers. You will need to have [Node.js](https://nodejs.org/) installed.
 
-To use this template, follow the setup instructions below. Once you have set up the workflow you can edit `src/index.js` and `dist/index.html` to develop your visualisation.
+## D3 support
+
+This template has been updated to support D3 version 6. As D3 has fully adopted ES2015, D3 modules in the `node_modules` folder are now transpiled along with your own source code when you build the production bundle. If you are using D3 version 5 or earlier and don't need to transpile D3, you should change the exclusion test for babel-loader on line 16 of `webpack.config.js` to the following:
+
+```javascript
+test: /node_modules\/(?!(whatwg-fetch)\/).*/
+```
 
 ## Setup
+
+To use this template, follow the setup instructions below. Once you have set up the workflow you can edit `src/index.js` and `dist/index.html` to develop your visualisation.
 
 1\. Clone this repository.
 
