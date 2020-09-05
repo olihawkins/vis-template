@@ -89,7 +89,7 @@ To keep build times short during development, `dist/index.html` is initially con
 
 ```html
 <!-- Load D3 from web for development: REMOVE for production -->
-<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3.6.min.js"></script>
 ```
 
 Correspondingly, the import statements needed to include D3 in the webpack bundle are commented out in `src/index.js`. Note that D3 needs the whatwg-fetch polyfill for its data loading functions to work in older browsers (all other polyfills are handled automatically by Babel and core-js).
