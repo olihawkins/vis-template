@@ -1,6 +1,6 @@
 # Visualisation template
 
-This is a simple template and workflow for developing interactive data visualisations with modern JavaScript using Node.js, Babel, webpack and D3. The aim is to be able to use the latest features of JavaScript, while generating code that works across a wide range of browsers. You will need to have [Node.js](https://nodejs.org/) installed.
+This is a simple template and workflow for developing interactive data visualisations with modern JavaScript using Node.js, Babel, webpack and D3. The aim is to be able to use the latest features of JavaScript, while generating code that works across a wide range of browsers. You will need to have [Node.js](https://nodejs.org/) installed. This template currently uses webpack version 4.
 
 ## D3 support
 
