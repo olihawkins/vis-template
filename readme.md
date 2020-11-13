@@ -47,7 +47,7 @@ npm init
 6\. Install the development dependencies.
 
 ```sh
-npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/plugin-transform-runtime webpack@4 webpack-cli webpack-dev-server eslint
+npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/plugin-transform-runtime webpack@4 webpack-cli@3 webpack-dev-server eslint
 ```
 
 7\. Install the package dependencies.
