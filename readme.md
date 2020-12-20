@@ -96,7 +96,7 @@ npm run build
 
 Rollup transpiles and bundles `src/index.js` as `dist/index.min.js`, including any modules `index.js` imports.
 
-In its initial state, `index.js` contains some example code, which checks that webpack, Babel and D3 are working correctly. Replace this with your visualisation code.
+In its initial state, `index.js` contains some example code, which checks that rollup, Babel and D3 are working correctly. Replace this with your visualisation code.
 
 Note that D3 needs the `whatwg-fetch` polyfill for `d3-fetch` functions to work in older browsers. All other polyfills are handled automatically by Babel and core-js.
 
