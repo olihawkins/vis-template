@@ -1,12 +1,12 @@
 /* Imports ----------------------------------------------------------------- */
 
-// D3 imports commented out for development: UNCOMMENT for production
-// import "whatwg-fetch";
-// import * as d3 from "d3";
+// Import D3 and the fetch polyfill
+import "whatwg-fetch";
+import * as d3 from "d3";
 
 /* Main -------------------------------------------------------------------- */
 
-// Test that webpack, Babel and D3 are working: REPLACE this with your code
+// Test that rollup, Babel and D3 are working: REPLACE this with your code
 
 // Test ES6 let behaviour
 for (let i = 0; i < 5; i++) {

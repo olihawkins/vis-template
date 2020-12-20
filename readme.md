@@ -1,44 +1,66 @@
 # Visualisation template
 
-This is a simple template and workflow for developing interactive data visualisations with modern JavaScript using Node.js, Babel, webpack and D3. The aim is to be able to use the latest features of JavaScript, while generating code that works across a wide range of browsers. You will need to have [Node.js](https://nodejs.org/) installed. This template currently uses webpack version 4.
+This repository is a simple template and workflow for developing interactive data visualisations with modern JavaScript using Node.js, Babel, rollup and D3. The aim is to be able to use the latest features of JavaScript, while generating code that works across a wide range of browsers. You will need to have [Node.js](https://nodejs.org/) installed.
 
 ## D3 support
 
-This template has been updated to support D3 version 6. As D3 has fully adopted ES2015, D3 modules in the `node_modules` folder are now transpiled along with your own source code when you build the production bundle. If you are using D3 version 5 or earlier and don't need to transpile D3, you should change the exclusion test for babel-loader on line 16 of `webpack.config.js` to the following:
+The template now supports D3 version 6. As D3 has fully adopted ES2015, D3 modules in the `node_modules` folder are now transpiled along with your own source code when you build the production bundle. If you are using D3 version 5 or earlier and don't need to transpile D3, you should change the regular expression that is used as the exclusion rule for babel-loader on line 26 of `rollup.config.js` to the following:
 
 ```javascript
-test: /node_modules\/(?!(whatwg-fetch)\/).*/
+/node_modules\/(?!(?!(whatwg-fetch)\/).*/
 ```
 
-## Setup
+## Quick setup
 
-To use this template, follow the setup instructions below. Once you have set up the workflow you can edit `src/index.js` and `dist/index.html` to develop your visualisation.
+The easiest way of using the template is to clone this repository into a new project directory and install the required modules using the pre-defined `package.json`.
 
-1\. Clone this repository.
+1\. Clone the repository into a project directory.
 
 ```sh
-git clone https://github.com/olihawkins/vis-template
+git clone https://github.com/olihawkins/vis-template my-project
 ```
 
-2\. Rename the folder to your project name.
+2\. Change into the project directory.
 
 ```sh
-mv vis-template your-project-name
+cd my-project
 ```
 
-3\. Change into the project directory.
-
-```sh
-cd your-project-name
-```
-
-4\. Remove the git files.
+3\. Remove the git files.
 
 ```sh
 rm -rf .git .gitignore LICENSE readme.md
 ```
 
-5\. Initialise the project folder with `npm` to create the `package.json`.
+4\. Install from `package.json`.
+
+```sh
+npm install
+```
+
+## Manual setup
+
+An alternative method involves manually downloading the latest versions of the packages. This may be useful if you want to upgrade to newer versions of the packages, or customise the setup in other ways.
+
+1\. Clone the repository into a project directory.
+
+```sh
+git clone https://github.com/olihawkins/vis-template my-project
+```
+
+2\. Change into the project directory.
+
+```sh
+cd my-project
+```
+
+4\. Remove the git files and the existing `package.json` files.
+
+```sh
+rm -rf .git .gitignore LICENSE readme.md package.json package-lock.json
+```
+
+5\. Initialise the project folder with `npm` to create a new `package.json`.
 
 ```sh
 npm init
@@ -47,7 +69,7 @@ npm init
 6\. Install the development dependencies.
 
 ```sh
-npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/plugin-transform-runtime webpack@4 webpack-cli@3 webpack-dev-server eslint
+npm install --save-dev @babel/core @babel/plugin-transform-runtime @babel/preset-env rollup @rollup/plugin-babel rollup-plugin-terser @rollup/plugin-commonjs @rollup/plugin-node-resolve rollup-plugin-serve eslint
 ```
 
 7\. Install the package dependencies.
@@ -59,69 +81,38 @@ npm install --save @babel/runtime @babel/runtime-corejs3 whatwg-fetch d3
 8\. Open `package.json` and add the following entries to `scripts` (above the entry for `test`).
 
 ```json
-"build": "webpack",
-"start": "webpack-dev-server --open",
+"build": "rollup -c --watch",
 ```
 
-9\. Start the webpack development server. This opens `dist/index.html` with a development build of the files in `src`. Changes to the source files trigger automatic reloading of the page.
+## Development
 
-```sh
-npm run start
-```
+The `src` directory contains the input JavaScript source file `index.js`, while the `dist` directory contains the `index.html` webpage. Once you have set up the workflow you can edit `src/index.js` and `dist/index.html` to develop your visualisation.
 
-10\. Use webpack on its own to build the bundle when you are ready to deploy (see below).
+To begin development, start rollup and navigate to [localhost:10001](http://localhost:10001) in your browser.
 
 ```sh
 npm run build
 ```
 
-11\. Create `.eslintrc` for the project if you use linting in your text editor (optional).
+Rollup transpiles and bundles `src/index.js` as `dist/index.min.js`, including any modules `index.js` imports.
+
+In its initial state, `index.js` contains some example code, which checks that webpack, Babel and D3 are working correctly. Replace this with your visualisation code.
+
+Note that D3 needs the `whatwg-fetch` polyfill for `d3-fetch` functions to work in older browsers. All other polyfills are handled automatically by Babel and core-js.
+
+You can optionally create a `.eslintrc` for the project if you use linting in your text editor.
 
 ```sh
 ./node_modules/.bin/eslint --init
 ```
 
-## Development
-
-The `src` directory contains the input JavaScript source file `index.js`, while the `dist` directory contains the `index.html` webpage. Webpack transpiles and bundles `src/index.js` as `dist/index.min.js`, including any modules `index.js` imports.
-
-To keep build times short during development, `dist/index.html` is initially configured to load D3 from the web.
-
-```html
-<!-- Load D3 from web for development: REMOVE for production -->
-<script src="https://d3js.org/d3.v6.min.js"></script>
-```
-
-Correspondingly, the import statements needed to include D3 in the webpack bundle are commented out in `src/index.js`. Note that D3 needs the whatwg-fetch polyfill for its data loading functions to work in older browsers (all other polyfills are handled automatically by Babel and core-js).
-
-```javascript
-// D3 imports commented out for development: UNCOMMENT for production
-// import "whatwg-fetch";
-// import * as d3 from "d3";
-```
-
-To generate the final production bundle, this development configuration needs to be reversed:
-
-- Remove the script tag that loads D3 from the web in `dist/index.html`
-- Uncomment the import statements that include D3 and whatwg-fetch in `src/index.js`
-- Change the `mode` in `webpack.config.js` from `development` to `production` to minify the output bundle
-- Use `npm run build` to create the bundle
-
-In its initial state, `index.js` contains some example code, which checks that webpack, Babel and D3 are working correctly. Replace this with your visualisation code.
-
 ## Technologies
 
-This is a simple setup. You can configure webpack further to do a lot more than this. More information on the technologies used for this workflow can be found in the documentation.
+This is a simple setup. You can configure rollup to do a lot more than this. More information on the technologies used for this workflow can be found in the documentation.
 
 - [Node.js](https://nodejs.org/)
-- [webpack](https://webpack.js.org/guides/getting-started/)
+- [rollup](https://rollupjs.org/)
 - [core-js](https://github.com/zloirock/core-js)
 - [whatwg-fetch](https://github.com/github/fetch)
 - [D3](https://d3js.org)
 - [ESLint](https://eslint.org)
-
-## Using D3
-
-- [Thinking with joins](https://bost.ocks.org/mike/join/) - Mike Bostock's original article on the D3 update pattern
-- [selecton.join](https://observablehq.com/@d3/selection-join) - Mike Bostock's notebook on the new D3 update pattern
-- [Enter and exit](https://www.d3indepth.com/enterexit/) - Step-by-step walkthrough of the D3 update pattern

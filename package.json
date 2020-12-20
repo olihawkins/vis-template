@@ -1,0 +1,43 @@
+{
+  "name": "vis-template",
+  "version": "0.1.0",
+  "description": "A template repository for developing interactive data visualisations with modern JavaScript that work across a wide range of browsers",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olihawkins/vis-template.git"
+  },
+  "keywords": [
+    "rollup",
+    "babel",
+    "D3"
+  ],
+  "author": "Oliver Hawkins",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olihawkins/vis-template/issues"
+  },
+  "homepage": "https://github.com/olihawkins/vis-template#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@rollup/plugin-babel": "^5.2.2",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.1",
+    "eslint": "^7.16.0",
+    "rollup": "^2.35.1",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "@babel/runtime-corejs3": "^7.12.5",
+    "d3": "^6.3.1",
+    "whatwg-fetch": "^3.5.0"
+  }
+}
