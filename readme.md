@@ -4,7 +4,7 @@ This repository is a simple template and workflow for developing interactive dat
 
 ## D3 support
 
-The template now supports D3 version 6. As D3 has fully adopted ES2015, D3 modules in the `node_modules` folder are now transpiled along with your own source code when you build the production bundle. If you are using D3 version 5 or earlier and don't need to transpile D3, you should change the regular expression that is used as the exclusion rule for babel-loader on line 26 of `rollup.config.js` to the following:
+The template now supports D3 version 7. As D3 has fully adopted ES2015, D3 modules in the `node_modules` folder are now transpiled along with your own source code when you build the production bundle. If you are using D3 version 5 or earlier and don't need to transpile D3, you should change the regular expression that is used as the exclusion rule for babel-loader on line 26 of `rollup.config.js` to the following:
 
 ```javascript
 /node_modules\/(?!(?!(whatwg-fetch)\/).*/
